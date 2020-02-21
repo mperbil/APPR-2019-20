@@ -1,17 +1,41 @@
 library(shiny)
 
-shinyUI(fluidPage(
+ui <- fluidPage(
+  inputPanel(
+    selectInput('x', 'X', choices = c("penaltyFaced", "savedShotsFromOutsideTheBox", "savedShotsFromInsideTheBox"),
+                selected = "savedShotsFromInsideTheBox"),
+    selectInput('y', 'Y', choices = c("penaltySave", "goalsConcededOutsideTheBox", "goalsConcededInsideTheBox"), 
+                selected = "goalsConcededInsideTheBox")
+  ),
   
-  titlePanel("Slovenske občine"),
+  mainPanel(plotOutput("outplot"))
   
-  tabsetPanel(
-      tabPanel("Velikost družine",
-               DT::dataTableOutput("druzine")),
-      
-      tabPanel("Število naselij",
-               sidebarPanel(
-                  uiOutput("pokrajine")
-                ),
-               mainPanel(plotOutput("naselja")))
-    )
-))
+)
+
+
+
+
+
+# inputPanel(
+#   selectInput('x', 'X', names(t3)),
+#   selectInput('y', 'Y', names(t3))
+# )
+
+
+
+
+# shinyUI(fluidPage(
+#   
+#   titlePanel("Slovenske občine"),
+#   
+#   tabsetPanel(
+#       tabPanel("Velikost družine",
+#                DT::dataTableOutput("t1")),
+#       
+#       tabPanel("Število naselij",
+#                sidebarPanel(
+#                   uiOutput("pokrajine")
+#                 ),
+#                mainPanel(plotOutput("naselja")))
+#     )
+# ))
