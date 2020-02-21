@@ -9,6 +9,7 @@ output:
       in_header: lib/styles.sty
     latex_engine: xelatex
 #runtime: shiny
+runtime: shiny
 ---
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
@@ -219,8 +220,8 @@ Zemljevid prikazuje število tekem brez prejetega zadetka po državah.
 <!--          size=guide_legend(title="Prebivalci (* 1000)")) -->
 <!-- ``` -->
 
-<!-- *** -->
+***
 
-<!-- ```{r shiny, echo=FALSE} -->
-<!-- shinyAppDir("shiny", options=list(width="100%", height=600)) -->
-<!-- ``` -->
+```{r shiny, echo=FALSE}
+shinyAppDir("shiny", options=list(width="100%", height=600))
+```
