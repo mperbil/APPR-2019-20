@@ -3,9 +3,10 @@ library(shiny)
 server <- function(input, output) {
   
   output$outplot <- renderPlot({
-    ggplot(t2) + aes_string(x=input$x, y=input$y) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3)
+    t2 %>%
+      filter(drzava == input$z) %>%
+      ggplot(aes_string(x=input$x, y=input$y)) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3)
   })
-  
 }
 
 

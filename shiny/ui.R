@@ -5,13 +5,11 @@ ui <- fluidPage(
     selectInput('x', 'X', choices = c("penaltyFaced", "savedShotsFromOutsideTheBox", "savedShotsFromInsideTheBox"),
                 selected = "savedShotsFromInsideTheBox"),
     selectInput('y', 'Y', choices = c("penaltySave", "goalsConcededOutsideTheBox", "goalsConcededInsideTheBox"), 
-                selected = "goalsConcededInsideTheBox")
-  ),
-  
-  mainPanel(plotOutput("outplot"))
-  
+                selected = "goalsConcededInsideTheBox"),
+    selectInput('z', 'drzava', choices = unique(t2$drzava), selected = "Spain")
+  ), 
+  mainPanel(plotOutput("outplot")) 
 )
-
 
 
 
