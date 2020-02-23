@@ -161,7 +161,7 @@ ggplot(t6.3, aes(x=drzava)) +
 Graf prikazuje vse enajstmetrovke v ligi po posameznih državah, ter deleža obranjenih in neobranjenih (število neobranjenih ni enako številu zadetkov, saj so tu všteti tud streli izven okvirja gola). Iz grafa vidimo da francoska in nemška liga močno izstopata. Pri nemški ligi je eden od razlogov temu to, da ima 18 ekip in ne 20 tako kot vse ostale obravnavane lige, iz tega sledi da je manj tudi tekem.
 Spodaj so prikazane obranjene enajstmetrovke še na zemljevidu.
 
-```{r zemljevid2, echo=FALSE, fig.align='center', fig.cap='Obranjene enajstmetrovke, glede na države'}
+```{r zemljevid2, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Obranjene enajstmetrovke, glede na države'}
 tm_shape(merge(zemljevid1,
                t2 %>% group_by(drzava) %>% summarise(penaltySave=sum(penaltySave)),
                by.x="SOVEREIGNT", by.y="drzava"), xlim=c(-15, 35), ylim=c(32, 72)) +
@@ -176,7 +176,7 @@ ggplot(t9, aes(x=drzava)) +
 ```
 Graf prikazuje vse zadetke v ligi po posameznih državah, ter delež zadetkov izven kazenskega prostora in znotraj kazenskega prostora.
 
-```{r zemljevid1, echo=FALSE, fig.align='center', fig.cap='Tekme brez prejetega zadetka, glede na države'}
+```{r zemljevid1, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Tekme brez prejetega zadetka, glede na države'}
 tm_shape(merge(zemljevid1,
                t1 %>% group_by(drzava) %>% summarise(cleanSheet=sum(cleanSheet)),
                by.x="SOVEREIGNT", by.y="drzava"), xlim=c(-15, 35), ylim=c(32, 72)) +
@@ -204,9 +204,32 @@ Zemljevid prikazuje število tekem brez prejetega zadetka po državah.
 
 # Napredna analiza podatkov
 
-<!-- # ```{r analiza, echo=FALSE, message=FALSE} -->
-<!-- # source("analiza/analiza.r", encoding="UTF-8") -->
-<!-- # ``` -->
+# ```{r analiza, echo=FALSE, message=FALSE}
+# source("analiza/analiza.r", encoding="UTF-8")
+# ```
+V tej fazi projekta sem analiziral podatke s pomočjo grafov, ki sem jih naredil v tretji fazi. V tej fazi sem se osredotočil predvsem na učinke vratarjev razdeljenih po državah v katerih branijo. Spodaj so prikazani štirje najzanimivejši grafi.
+
+```{r graf11, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Posredovanje pri enajstmetrovkah'}
+ggplot(t2) + aes(x=penaltyFaced, y=penaltySave, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Posredovanje pri enajstmetrovkah") + xlab("Število enajstmetrovk") + ylab("Število obranjenih enajstmetrovk") + geom_smooth(method = "lm", se=FALSE)
+```
+Graf prikazuje posredovanje pri enajstmetrovkah. Tu je predvsem zanimiva primerjava med nemško in francosko ligo, saj vidimo da ja v francoski ligi dosojenih veliko več enajstmetrovk kot v nemški ligi, prav tako pa je večji tudi odstotek obranjenih enajstmetrovk, kar razberemo iz strmine grafa.
+
+```{r graf12, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Posredovanje pri strelih izven kazenskega prostora'}
+ggplot(t2) + aes(x=savedShotsFromOutsideTheBox, y=goalsConcededOutsideTheBox, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Posredovanje pri strelih izven kazenskega prostora") + xlab("Obranjeni streli izven kazenskega prostora") + ylab("Prejeti zadetki izven kazenskega prostora") + geom_smooth(method = "lm", se=FALSE)
+```
+Graf prikazuje posredovanje pri strelih izven kazenskega prostora. Iz grafa vidimo, da največ zadetkov iz razdalje prejmejo vratarji v angleški ligi, najmanj pa v francoski ligi. Največji delež zadetkov glede na obrambe pa imajo vratarji v italijanski ligi.
+
+```{r graf13, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Posredovanje pri predložkih'}
+ggplot(t3) + aes(x=highClaims, y=crossesNotClaimed, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Posredovanje pri predložkih") + xlab("Število ujetih predložkov") + ylab("Število napak pri predložkih") + geom_smooth(method = "lm", se=FALSE)
+```
+Graf prikazuje posredovanje pri predložkih. Tukaj zanimivo po napakh močno izstopa angleška liga, predvsem pa je zanimivo, da je nad grafom nekaj vratarjev, ki branijo za ene najboljših klubov na svetu, recimo Leno in Alisson. Najmanj napak pa storijo vratarji v nemški ligi.
+
+```{r graf14, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Podaje'}
+ggplot(t4) + aes(x=totalPasses, y=accuratePassesPercentage, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Podaje") + xlab("Število podaj") + ylab("Natančnost podaj") + geom_smooth(method = "lm", se=FALSE)
+```
+Graf prikazuje podaje. Ne tem grafu je zanimivo predvsem, da za nekatere lige (nemška in angleška) v splošnem velja, da s številom podaj raste tudi natančnost le teh, za druge (italijanska, španska in francoska) pa da natančnost s številom podaj pada. Zanimivo je tudi, da imajo v splošnem najslabši odstotek podaj prav v španski in angleški ligi, ki v splošnem veljata za najkvalitetnejši.
+
+
 
 <!-- Spodnji graf prikazuje povezavo med številom naselij in površino občine. -->
 
