@@ -34,6 +34,8 @@ ggplot(t6) + aes(x=drzava, y=penaltySave_drzava, fill=drzava) + geom_bar(stat="i
 t6.2 <- t2 %>% group_by(drzava) %>% summarise(penaltyFaced_drzava=sum(penaltyFaced))
 penaltyFaced_drzava <- t6.2[[2]]
 t6.3 <- cbind(t6, penaltyFaced_drzava)
+t6.3[,2] <- ifelse(t6.3$drzava == 'Germany', t6.3[,2] * (380/340), t6.3[,2])
+t6.3[,3] <- ifelse(t6.3$drzava == 'Germany', t6.3[,3] * (380/340), t6.3[,3])
 ggplot(t6.3) + aes(x=penaltyFaced_drzava, y=penaltySave_drzava) + geom_point() + geom_text(aes(label=drzava),hjust=0, vjust=0) + ggtitle("Enajstmetrovke, glede na države") #+ geom_smooth(method = "lm")
 
 #ggplot(t6.3, aes(x = drzava, y= penaltyFaced_drzava, fill = penaltySave_drzava)) +
@@ -53,6 +55,9 @@ ggplot(t8) + aes(x=drzava, y=goalsConcededInsideTheBox_drzava, fill=drzava) + ge
 
 goalsConcededInsideTheBox_drzava<- t8[[2]]
 t9 <- cbind(t7, goalsConcededInsideTheBox_drzava)
+
+t9[,2] <- ifelse(t9$drzava == 'Germany', t9[,2] * (380/340), t9[,2])
+t9[,3] <- ifelse(t9$drzava == 'Germany', t9[,3] * (380/340), t9[,3])
 
 ggplot(t9, aes(x=drzava)) + 
   geom_col(aes(y=goalsConcededOutsideTheBox_drzava+goalsConcededInsideTheBox_drzava, fill="Zadetki izven 16m")) + 
