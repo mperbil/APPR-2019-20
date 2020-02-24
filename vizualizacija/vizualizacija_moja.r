@@ -38,8 +38,6 @@ t6.3[,2] <- ifelse(t6.3$drzava == 'Germany', t6.3[,2] * (380/340), t6.3[,2])
 t6.3[,3] <- ifelse(t6.3$drzava == 'Germany', t6.3[,3] * (380/340), t6.3[,3])
 ggplot(t6.3) + aes(x=penaltyFaced_drzava, y=penaltySave_drzava) + geom_point() + geom_text(aes(label=drzava),hjust=0, vjust=0) + ggtitle("Enajstmetrovke, glede na države") #+ geom_smooth(method = "lm")
 
-#ggplot(t6.3, aes(x = drzava, y= penaltyFaced_drzava, fill = penaltySave_drzava)) +
-#  geom_bar(stat="identity", width=.5, position = "dodge")
 
 ggplot(t6.3, aes(x=drzava)) + 
   geom_col(aes(y=penaltyFaced_drzava, fill="Neobranjene enajstmetrovke")) + 
@@ -65,15 +63,6 @@ ggplot(t9, aes(x=drzava)) +
   xlab("") + ylab("Število vseh zadetkov v ligi") + ggtitle("Prejeti zadetki glede na države")
 
 
-#zadetki <- recode(t9, `0` = "goalsConcededInsideTheBox_drzava", .default = "goalsConcededOutsideTheBox_drzava")
-#ggplot(t9) + aes(x = drzava, fill = zadetki) + geom_bar(position = "fill")
-
-#ggplot(t1, aes(x=cleanSheet)) + geom_histogram() +
-#  ggtitle("Pogostost števila naselij") + xlab("Število naselij") + ylab("Število občin")
-
-#ggplot(podatki_v_ap_cs_ita) + aes(x=igralec, y=cleanSheet, color=appearances) + geom_point()
-#ggplot(podatki_v_ap_cs_ita) + aes(x=appearances, y=cleanSheet, color=igralec) + geom_point()
-
 
 # #tortni diagram za ita, za cleansheete 
 # bp<- ggplot(podatki_v_ap_cs_ita, aes(x="", y=cleanSheet, fill=igralec))+
@@ -88,7 +77,6 @@ bp
 pie <- bp + coord_polar("y", start=0)
 pie
 
-#z <- ggplot(zemljevid, aes(x=long, y=lat))
 
 # Uvozimo zemljevid.
 zemljevid <- uvozi.zemljevid("https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/110m_cultural.zip",
