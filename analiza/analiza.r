@@ -16,16 +16,6 @@ ggplot(t4) + aes(x=accurateLongBalls, y=accurateLongBallsPercentage, size=accura
 # 
 # 
 # 
-# t1.norm <- t1 %>% select(-igralec) %>% scale()
-# rownames(t1.norm) <- t1$igralec
-# k <- kmeans(t1.norm, 5)
-# 
-# 
-# podatki <- t1 %>% transmute(igralec, cleanSheet, appearances) #%>%
-#   #left_join(drzava, by="igralec")
-# row.names(podatki) <- podatki$igralec
-# podatki$igralec <- NULL
-# 
 # 
 #  
 # # Število skupin
