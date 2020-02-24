@@ -2,9 +2,9 @@ library(shiny)
 
 ui <- fluidPage(
   inputPanel(
-    selectInput('x', 'X', choices = c("penaltyFaced", "savedShotsFromOutsideTheBox", "savedShotsFromInsideTheBox"),
+    selectInput('x', 'X', choices = c("Enajstmetrovke" = "penaltyFaced", "Obranjeni streli izven kazenskega prostora" = "savedShotsFromOutsideTheBox", "Obranjeni streli znotraj kazenskega prostora" =  "savedShotsFromInsideTheBox"),
                 selected = "savedShotsFromInsideTheBox"),
-    selectInput('y', 'Y', choices = c("penaltySave", "goalsConcededOutsideTheBox", "goalsConcededInsideTheBox"), 
+    selectInput('y', 'Y', choices = c("Obranjene enajstmetrovke" = "penaltySave","Prejeti zadetki izven kazenskega prostora" = "goalsConcededOutsideTheBox","Prejeti zadetki znotraj kazenskega prostora" = "goalsConcededInsideTheBox"), 
                 selected = "goalsConcededInsideTheBox"),
     selectInput('z', 'drzava', choices = unique(t2$drzava), selected = "Spain")
   ), 

@@ -5,7 +5,7 @@ server <- function(input, output) {
   output$outplot <- renderPlot({
     t2 %>%
       filter(drzava == input$z) %>%
-      ggplot(aes_string(x=input$x, y=input$y)) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3)
+      ggplot(aes_string(x=input$x, y=input$y)) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) # + xlab(input$x) + ylab(input$y)
   })
 }
 
