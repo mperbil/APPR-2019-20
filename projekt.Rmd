@@ -167,7 +167,7 @@ Spodaj so prikazane obranjene enajstmetrovke še na zemljevidu.
 tm_shape(merge(zemljevid1,
                t2 %>% group_by(drzava) %>% summarise(penaltySave=sum(penaltySave)),
                by.x="SOVEREIGNT", by.y="drzava"), xlim=c(-15, 35), ylim=c(32, 72)) +
-  tm_polygons("penaltySave") + ggtitle("Obranjene enajstmetrovke, glede na države")
+  tm_polygons("penaltySave", title = "Obranjene enajstmetrovke") + ggtitle("Obranjene enajstmetrovke, glede na države")
 ```
 
 ```{r graf2.2, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Prejeti zadetki glede na države'}
@@ -182,9 +182,9 @@ Graf prikazuje vse zadetke v ligi po posameznih državah, ter delež zadetkov iz
 tm_shape(merge(zemljevid1,
                t1 %>% group_by(drzava) %>% summarise(cleanSheet=sum(cleanSheet)),
                by.x="SOVEREIGNT", by.y="drzava"), xlim=c(-15, 35), ylim=c(32, 72)) +
-  tm_polygons("cleanSheet") + ggtitle("Tekme brez prejetega zadetka, glede na države")
+  tm_polygons("cleanSheet", title = "Tekme brez prejetega zadetka") + ggtitle("Tekme brez prejetega zadetka, glede na države")
 ```
-Zemljevid prikazuje število tekem brez prejetega zadetka po državah. Po pričakovanjih je najmanj tekem brez prejetega zadetka v nemški in angleški ligi, saj sta to ligi kjer pade največ zadetkov.
+Zemljevid prikazuje vsoto tekem brez prejetega zadetka vseh klubov iz posamezne države. Po pričakovanjih je najmanj tekem brez prejetega zadetka v nemški in angleški ligi, saj sta to ligi kjer pade največ zadetkov.
 
 
 
