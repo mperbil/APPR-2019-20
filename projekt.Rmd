@@ -118,7 +118,7 @@ source("vizualizacija/vizualizacija_moja.r", encoding="UTF-8")
 V tej fazi sem iz uvoženih podatkov narisal grafe in zemljevida. V prvem delu sem narisal grafe glede na posamezne vratarje, v drugem pa glede na države oziroma lige v katerih vratarji igrajo, narisal sem tudi dva zemljevida glede na države.
 
 ```{r graf1, echo=FALSE, message=FALSE, fig.align='center'}
-ggplot(t1) + aes(x=appearances, y=cleanSheet, color=drzava) + geom_point()+ geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Tekme brez prejetega zadetka") + xlab("Število nastopov") + ylab("Tekme brez prejetega zadetka")+labs(colour= "država")
+ggplotly(ggplot(t1) + aes(igralec=igralec, ekipa=ekipa, x=appearances, y=cleanSheet, color=drzava) + geom_point() + ggtitle("Tekme brez prejetega zadetka") + xlab("Število nastopov") + ylab("Tekme brez prejetega zadetka")+labs(colour= "država"))
 ```
 Graf prikazuje tekme brez prejetega zadetka v odvisnosti od odigranih tekm. Po pričakovanjih so najvišje vratarji iz najmočnejših evropskih klubov, saj imajo ti tudi najboljše ekipe, ki so vratarjem v pomoč.
 
