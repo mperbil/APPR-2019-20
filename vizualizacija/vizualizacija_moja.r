@@ -109,10 +109,10 @@ tm_shape(merge(zemljevid1,
   tm_polygons("penaltySave") + ggtitle("Obranjene enajstmetrovke, glede na drĹľave")
 
 
-ggplotly(ggplot(t1) + aes(label=igralec, x=appearances, y=cleanSheet, color=drzava, ekipa= ekipa) + geom_point() + ggtitle("Tekme brez prejetega zadetka") + xlab("Ĺ tevilo nastopov") + ylab("Tekme brez prejetega zadetka") + geom_smooth(method = "lm", se=FALSE))
+ggplotly(ggplot(t1) + aes(igralec=igralec, ekipa= ekipa, x=appearances, y=cleanSheet, color=drzava) + geom_point() + ggtitle("Tekme brez prejetega zadetka") + xlab("Ĺ tevilo nastopov") + ylab("Tekme brez prejetega zadetka") + geom_smooth(aes(group=drzava), method = "lm", se=FALSE) +labs(colour= "država"))
 
-gg <- ggplotly(p)
-gg
+# gg <- ggplotly(p)
+# gg
 
 
 
