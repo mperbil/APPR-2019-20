@@ -127,7 +127,7 @@ Graf prikazuje tekme brez prejetega zadetka v odvisnosti od odigranih tekm. Po p
 <!-- # ``` -->
 
 ```{r graf3, echo=FALSE, message=FALSE, fig.align='center'}
-ggplot(t2) + aes(x=savedShotsFromInsideTheBox, y=goalsConcededInsideTheBox, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Posredovanje pri strelih znotraj kazenskega prostora") + xlab("Obranjeni streli znotraj kazenskega prostora") + ylab("Prejeti zadetki znotraj kazenskega prostora")+labs(colour= "država")
+ggplotly(ggplot(t2) + aes(igralec=igralec, ekipa=ekipa, x=savedShotsFromInsideTheBox, y=goalsConcededInsideTheBox, color=drzava) + geom_point() + ggtitle("Posredovanje pri strelih znotraj kazenskega prostora") + xlab("Obranjeni streli znotraj kazenskega prostora") + ylab("Prejeti zadetki znotraj kazenskega prostora")+labs(colour= "država"))
 ```
 Graf prikazuje prejete zadetke znotraj kazenskega prostora, glede na obrambe. Iz grafa se vidi da več kot imajo vratarji obramb, več imajo tudi prejetih zadetkov. Večinoma imajo največ tako obramb, kot tudi prejetih zadetkov vratarji iz spodnjih polovic lestvic, saj je proti njihovemu golu usmerjenih tudi največ strelov.
 
@@ -136,7 +136,7 @@ Graf prikazuje prejete zadetke znotraj kazenskega prostora, glede na obrambe. Iz
 <!-- # ``` -->
 
 ```{r graf5, echo=FALSE, message=FALSE, fig.align='center'}
-ggplot(t3) + aes(x=runsOut, y=successfulRunsOut, color=drzava) + geom_point() + geom_text(aes(label=ifelse(successfulRunsOut>18,as.character(igralec),'')),hjust=0, vjust=0, size=3) + ggtitle("Iztekanja") + xlab("Število iztekov") + ylab("Število uspešnih iztekov")+labs(colour= "država")
+ggplotly(ggplot(t3) + aes(igralec=igralec, ekipa=ekipa, x=runsOut, y=successfulRunsOut, color=drzava) + geom_point() + ggtitle("Iztekanja") + xlab("Število iztekov") + ylab("Število uspešnih iztekov")+labs(colour= "država"))
 ```
 Graf prikazuje iztekanja iz golove črte. Tu je zanimiv predvsem vratar Watforda Ben Foster, saj res močno izstopa po številu iztekov, pri čemer je tudi relativno uspešen.  
 
@@ -148,7 +148,7 @@ Graf prikazuje iztekanja iz golove črte. Tu je zanimiv predvsem vratar Watforda
 <!-- # ggplot(t4) + aes(x=ekipa, y=totalPasses, size=accuratePassesPercentage, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Podaje") + xlab("Ekipa") + ylab("Število podaj") -->
 <!-- # ``` -->
 ```{r graf8, echo=FALSE, message=FALSE, fig.align='center'}
-ggplot(t4) + aes(x=accurateLongBallsPercentage, y=accurateLongBalls, size=accurateLongBallsPercentage, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Dolge Žoge") + xlab("Odstotek natančnosti pri dolgih žogah") + ylab("Število dolgih žog")+labs(colour= "država")+labs(size= "natančnost")
+ggplotly(ggplot(t4) + aes(igralec=igralec, ekipa=ekipa, x=accurateLongBallsPercentage, y=accurateLongBalls, size=accurateLongBallsPercentage, color=drzava) + geom_point() + ggtitle("Dolge Žoge") + xlab("Odstotek natančnosti pri dolgih žogah") + ylab("Število dolgih žog")+labs(colour= "država")+labs(size= "natančnost"))
 ```
 Graf prikazuje število dolgih žog glede na natančnost le teh. Po grafu sodeč, natančnost podaj in število podaj nista neposredno odvisni. Vidimo, da se nekateri vratarji kjub relativno slabemu odstotku vseeno odločajo za veliko število dolgih žog. Drugi pa se kljub dobremu odstotku natančnosti za dolge podaje ne odločijo pogosto.
 
@@ -212,22 +212,22 @@ Zemljevid prikazuje vsoto tekem brez prejetega zadetka vseh klubov iz posamezne 
 V tej fazi projekta sem analiziral podatke s pomočjo grafov, ki sem jih naredil v tretji fazi. V tej fazi sem se osredotočil predvsem na učinke vratarjev razdeljenih po državah v katerih branijo. Spodaj so prikazani štirje najzanimivejši grafi.
 
 ```{r graf11, echo=FALSE, message=FALSE, fig.align='center'}
-ggplot(t2) + aes(x=penaltyFaced, y=penaltySave, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Posredovanje pri enajstmetrovkah") + xlab("Število enajstmetrovk") + ylab("Število obranjenih enajstmetrovk") + geom_smooth(method = "lm", se=FALSE)+labs(colour= "država")
+ggplotly(ggplot(t2) + aes(igralec=igralec, ekipa=ekipa, x=penaltyFaced, y=penaltySave, color=drzava) + geom_point() + ggtitle("Posredovanje pri enajstmetrovkah") + xlab("Število enajstmetrovk") + ylab("Število obranjenih enajstmetrovk") + geom_smooth(aes(group=drzava), method = "lm", se=FALSE)+labs(colour= "država"))
 ```
 Graf prikazuje posredovanje pri enajstmetrovkah. Tu je predvsem zanimiva primerjava med nemško in francosko ligo, saj vidimo da ja v francoski ligi dosojenih veliko več enajstmetrovk kot v nemški ligi, prav tako pa je večji tudi odstotek obranjenih enajstmetrovk, kar razberemo iz strmine grafa.
 
 ```{r graf12, echo=FALSE, message=FALSE, fig.align='center'}
-ggplot(t2) + aes(x=savedShotsFromOutsideTheBox, y=goalsConcededOutsideTheBox, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Posredovanje pri strelih izven kazenskega prostora") + xlab("Obranjeni streli izven kazenskega prostora") + ylab("Prejeti zadetki izven kazenskega prostora") + geom_smooth(method = "lm", se=FALSE)+labs(colour= "država")
+ggplotly(ggplot(t2) + aes(igralec=igralec, ekipa=ekipa, x=savedShotsFromOutsideTheBox, y=goalsConcededOutsideTheBox, color=drzava) + geom_point() + ggtitle("Posredovanje pri strelih izven kazenskega prostora") + xlab("Obranjeni streli izven kazenskega prostora") + ylab("Prejeti zadetki izven kazenskega prostora") + geom_smooth(aes(group=drzava), method = "lm", se=FALSE)+labs(colour= "država"))
 ```
 Graf prikazuje posredovanje pri strelih izven kazenskega prostora. Iz grafa vidimo, da največ zadetkov iz razdalje prejmejo vratarji v angleški ligi, najmanj pa v francoski ligi. Največji delež zadetkov glede na obrambe pa imajo vratarji v italijanski ligi.
 
 ```{r graf13, echo=FALSE, message=FALSE, fig.align='center'}
-ggplot(t3) + aes(x=highClaims, y=crossesNotClaimed, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Posredovanje pri predložkih") + xlab("Število ujetih predložkov") + ylab("Število napak pri predložkih") + geom_smooth(method = "lm", se=FALSE)+labs(colour= "država")
+ggplotly(ggplot(t3) + aes(igralec=igralec, ekipa=ekipa, x=highClaims, y=crossesNotClaimed, color=drzava) + geom_point() + ggtitle("Posredovanje pri predložkih") + xlab("Število ujetih predložkov") + ylab("Število napak pri predložkih") + geom_smooth(aes(group=drzava), method = "lm", se=FALSE)+labs(colour= "država"))
 ```
 Graf prikazuje posredovanje pri predložkih. Tukaj po napakh močno izstopa angleška liga. Zanimivo je, da je nad grafom nekaj vratarjev, ki branijo za ene najboljših klubov na svetu, recimo Leno in Alisson. Po drugi strani pa je pod grafom veliko vratarjev, ki branijo v manj izpostavljenih klubih. Najmanj napak storijo vratarji v nemški ligi.
 
 ```{r graf14, echo=FALSE, message=FALSE, fig.align='center'}
-ggplot(t4) + aes(x=totalPasses, y=accuratePassesPercentage, color=drzava) + geom_point() + geom_text(aes(label=igralec),hjust=0, vjust=0, size=3) + ggtitle("Podaje") + xlab("Število podaj") + ylab("Natančnost podaj") + geom_smooth(method = "lm", se=FALSE)+labs(colour= "država")
+ggplotly(ggplot(t4) + aes(igralec=igralec, ekipa=ekipa, x=totalPasses, y=accuratePassesPercentage, color=drzava) + geom_point() + ggtitle("Podaje") + xlab("Število podaj") + ylab("Natančnost podaj") + geom_smooth(aes(group=drzava), method = "lm", se=FALSE)+labs(colour= "država"))
 ```
 Graf prikazuje podaje. Ne tem grafu je zanimivo, da za nekatere lige (nemška in angleška) v splošnem velja, da s številom podaj raste tudi natančnost le teh, za druge (italijanska, španska in francoska) pa da natančnost s številom podaj pada. Zanimivo je tudi, da imajo v splošnem najslabši odstotek podaj prav v španski in angleški ligi, ki v splošnem veljata za najkvalitetnejši.
 
